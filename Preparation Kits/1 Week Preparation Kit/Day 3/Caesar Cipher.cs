@@ -31,12 +31,7 @@ class Result
             if (k >= alphabet.Count())
                 k = k % alphabet.Count();
 
-            string alphabetRotated = "";
-
-            if (k == 0)
-                alphabetRotated = alphabet;
-            else
-                alphabetRotated = alphabet.Substring(k) + alphabet.Substring(0, k);
+            var alphabetRotated = alphabet.Substring(k) + alphabet.Substring(0, k);
 
             var result = "";
 
