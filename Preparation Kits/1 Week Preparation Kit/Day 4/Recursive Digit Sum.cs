@@ -25,38 +25,38 @@ class Result
      */
 
     public static int superDigit(string n, int k)
+    {
+        if (ulong.MaxValue.ToString().Length <= n.Length)
         {
-            if (ulong.MaxValue.ToString().Length <= n.Length)
-            {
-                return superDigit(
-                    (superDigit(n.Substring(0, n.Length / 2), 1) 
-                        + superDigit(n.Substring(n.Length / 2), 1)
-                    ).ToString(), 
-                    1);
-            }
-
-            ulong number = Convert.ToUInt64(n);
-        
-            if (number < 10 && k == 1)
-                return (int)number;
-         
-            number = sum(n) * (ulong)k;
-        
-            if (number > 9)
-                number = (ulong)superDigit(number.ToString(), 1);
-            
-            return (int)number;
+            return superDigit(
+                (superDigit(n.Substring(0, n.Length / 2), 1) 
+                    + superDigit(n.Substring(n.Length / 2), 1)
+                ).ToString(), 
+                1);
         }
+
+        ulong number = Convert.ToUInt64(n);
     
-        private static ulong sum(string n)
-        {
-            ulong sum = 0;
+        if (number < 10 && k == 1)
+            return (int)number;
+        
+        number = sum(n) * (ulong)k;
+    
+        if (number > 9)
+            number = (ulong)superDigit(number.ToString(), 1);
+        
+        return (int)number;
+    }
 
-            foreach (char item in n)
-                sum += Convert.ToUInt64(item.ToString());
+    private static ulong sum(string n)
+    {
+        ulong sum = 0;
 
-            return sum;
-        }
+        foreach (char item in n)
+            sum += Convert.ToUInt64(item.ToString());
+
+        return sum;
+    }
 }
 
 class Solution
